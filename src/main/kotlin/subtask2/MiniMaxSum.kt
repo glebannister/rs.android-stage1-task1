@@ -2,8 +2,19 @@ package subtask2
 
 class MiniMaxSum {
 
-    // TODO: Complete the following function
+
     fun getResult(input: IntArray): IntArray {
-        throw NotImplementedError("Not implemented")
+        var sum = 0
+        var minInInput = input.min()
+        var maxInInput = input.max()
+        for (i in input){
+            if (i < minInInput!!){
+                minInInput = i
+            } else if (i > maxInInput!!){
+                maxInInput = i
+            }
+            sum +=i
+        }
+        return intArrayOf(sum - maxInInput!!, sum - minInInput!!)
     }
 }
