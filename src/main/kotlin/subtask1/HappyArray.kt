@@ -4,16 +4,16 @@ class HappyArray {
 
     fun convertToHappy(sadArray: IntArray): IntArray {
         var j = 1
-        val happyList = sadArray.toMutableList()
+        val happyArray = sadArray.toMutableList()
 
-        while (j < happyList.size - 1) {
-            if ( j != 0 && happyList[j] > happyList[j + 1] + happyList[j - 1]) {
-                happyList.removeAt(j)
+        while (j < happyArray.size - 1) {
+            if ( j != 0 && happyArray[j] > happyArray[j + 1] + happyArray[j - 1]) {
+                happyArray.removeAt(j)
                 j --
             } else {
                 j ++
             }
         }
-        return happyList.toIntArray()
+        return happyArray.toIntArray()
     }
 }

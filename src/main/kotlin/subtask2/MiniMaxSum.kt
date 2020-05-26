@@ -5,15 +5,10 @@ class MiniMaxSum {
 
     fun getResult(input: IntArray): IntArray {
         var sum = 0
-        var minInInput = input.min()
-        var maxInInput = input.max()
+        val minInInput = input.min()
+        val maxInInput = input.max()
         for (i in input){
-            if (i < minInInput!!){
-                minInInput = i
-            } else if (i > maxInInput!!){
-                maxInInput = i
-            }
-            sum +=i
+            sum+= i
         }
         return intArrayOf(sum - maxInInput!!, sum - minInInput!!)
     }

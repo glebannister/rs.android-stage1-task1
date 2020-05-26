@@ -2,61 +2,37 @@ package subtask4
 
 class StringParser {
 
+    private val stringBuilder = StringBuilder()
+    val resultArray = arrayListOf<String>()
 
     fun getResult(inputString: String): Array<String> {
-        var resultArray = arrayListOf<String>()
-        val stringBuilder = StringBuilder()
-        for (i in inputString.indices) {
-            if (inputString[i] == '[') {
+        for (i in inputString.indices){
+            getSymbols(inputString, i,'<', '>')
+            getSymbols(inputString, i,'(', ')')
+            getSymbols(inputString, i,'[', ']')
+        }
+        return resultArray.toTypedArray()
+    }
+
+    private fun getSymbols(inputString: String, i:Int, symbolFirst: Char, symbolLast: Char) {
+
+            if (inputString[i] == symbolFirst) {
                 var count = 1
                 for (j in i + 1 until inputString.length) {
-                    if (inputString[j] == '[') {
+                    if (inputString[j] == symbolFirst) {
                         count++
                     }
-                    if (inputString[j] == ']') {
+                    if (inputString[j] == symbolLast) {
                         count--
-                        if (count == 0) {
-                            resultArray.add(stringBuilder.toString())
-                            stringBuilder.clear()
-                            break
-                        }
                     }
-                    stringBuilder.append(inputString[j])
-                }
-            } else if (inputString[i] == '<') {
-                var count2 = 1
-                for (j in i + 1 until inputString.length) {
-                    if (inputString[j] == '<') {
-                        count2++
-                    }
-                    if (inputString[j] == '>') {
-                        count2--
-                        if (count2 == 0) {
-                            resultArray.add(stringBuilder.toString())
-                            stringBuilder.clear()
-                            break
-                        }
-                    }
-                    stringBuilder.append(inputString[j])
-                }
-            } else if (inputString[i] == '(') {
-                var count3 = 1
-                for (j in i + 1 until inputString.length) {
-                    if (inputString[j] == '(') {
-                        count3++
-                    }
-                    if (inputString[j] == ')') {
-                        count3--
-                        if (count3 == 0) {
-                            resultArray.add(stringBuilder.toString())
-                            stringBuilder.clear()
-                            break
-                        }
+                    if (count == 0) {
+                        resultArray.add(stringBuilder.toString())
+                        stringBuilder.clear()
+                        break
                     }
                     stringBuilder.append(inputString[j])
                 }
             }
-        }
-        return resultArray.toTypedArray()
+
     }
 }
